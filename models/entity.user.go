@@ -7,11 +7,12 @@ import (
 )
 
 type EntityUsers struct {
-	ID        string `gorm:"primaryKey;type:varchar(15)"`
-	FirstName string `gorm:"type:varchar(255)"`
-	LastName  string `gorm:"type:varchar(255)"`
-	Email     string `gorm:"type:varchar(255)"`
-	Password  string `gorm:"type:varchar(255)"`
+	ID        string `gorm:"primaryKey;type:varchar(15);not null"`
+	FirstName string `gorm:"type:varchar(255);not null"`
+	LastName  string `gorm:"type:varchar(255);not null"`
+	Username  string `gorm:"type:varchar(255);unique;not null`
+	Email     string `gorm:"type:varchar(255);unique;not null"`
+	Password  string `gorm:"type:varchar(255);not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt time.Time `gorm:"default:null"`

@@ -16,11 +16,13 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
 
 	u := model.EntityUsers{}
 	u.FirstName = input.FirstName
 	u.LastName = input.LastName
+	u.Username = input.Username
 	u.Email = input.Email
 	u.Password = input.Password
 
@@ -34,5 +36,8 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
+	c.JSON(http.StatusCreated, "User created")
+	return
 }
