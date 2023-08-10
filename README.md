@@ -1,7 +1,7 @@
 
 # Kyrol Marketplace API
 
-A (not yet)ready-to-use, Golang backend API version of Kyrol Marketplace.
+A ready-to-use, Golang backend API version of Kyrol Marketplace.
 
 
 
@@ -40,4 +40,9 @@ A (not yet)ready-to-use, Golang backend API version of Kyrol Marketplace.
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
+
+
+## Authors
+
+- [@kyroline (Rizky Wahyu Dewantoro)](https://github.com/Kyroline)
 
