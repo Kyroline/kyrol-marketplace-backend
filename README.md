@@ -41,6 +41,35 @@ A ready-to-use, Golang backend API version of Kyrol Marketplace.
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+#### Login
+
+```http
+  POST /auth/login
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**. User email |
+| `password`      | `string` | **Required**. Password |
+
+#### Register
+
+```http
+  POST /auth/register
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `first_name`      | `string` | **Required**. First name |
+| `last_name`      | `string` | **Required**. Last name |
+| `username`      | `string` | **Required**. Username |
+| `email`      | `string` | **Required**. Email |
+| `password`      | `string` | **Required**. Password |
+
+#### Logout
+
+Not yet implemented (Read the note on controllers/auth-controllers/logout)
+
 
 ## Authors
 

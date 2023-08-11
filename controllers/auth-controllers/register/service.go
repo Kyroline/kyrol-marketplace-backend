@@ -19,7 +19,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	u := model.EntityUsers{}
+	u := model.User{}
 	u.FirstName = input.FirstName
 	u.LastName = input.LastName
 	u.Username = input.Username
@@ -27,7 +27,7 @@ func Register(c *gin.Context) {
 	u.Password = input.Password
 
 	var count int64
-	database.DB.Model(&model.EntityUsers{}).Count(&count)
+	database.DB.Model(&model.User{}).Count(&count)
 
 	u.ID = "US" + strconv.FormatInt(7000000+count+1, 10)
 

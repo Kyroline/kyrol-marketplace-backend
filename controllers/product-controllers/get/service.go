@@ -10,8 +10,8 @@ import (
 )
 
 func GetProduct(c *gin.Context) {
-	var products []model.EntityProducts
-	err := database.DB.Model(&model.EntityProducts{}).Preload("EntityVariants").Find(&products).Error
+	var products []model.Product
+	err := database.DB.Model(&model.Product{}).Preload("EntityVariants").Find(&products).Error
 	if err == nil {
 		c.JSON(http.StatusOK, gin.H{
 			"data": products,

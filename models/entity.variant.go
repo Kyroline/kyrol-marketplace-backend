@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type EntityVariants struct {
+type ProductVariant struct {
 	ProductID string  `gorm:"type:varchar(15);not null"`
 	ID        string  `gorm:"primaryKey"`
 	Name      string  `gorm:"type:varchar(255);not null"`
@@ -17,12 +17,12 @@ type EntityVariants struct {
 	DeletedAt time.Time `gorm:"default:null"`
 }
 
-func (entity *EntityVariants) BeforeCreate(db *gorm.DB) error {
+func (entity *ProductVariant) BeforeCreate(db *gorm.DB) error {
 	entity.CreatedAt = time.Now().Local()
 	return nil
 }
 
-func (entity *EntityVariants) BeforeUpdate(db *gorm.DB) error {
+func (entity *ProductVariant) BeforeUpdate(db *gorm.DB) error {
 	entity.UpdatedAt = time.Now().Local()
 	return nil
 }

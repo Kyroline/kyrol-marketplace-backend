@@ -13,7 +13,7 @@ func CreateProduct(c *gin.Context) {
 	var input InputCreateProduct
 	c.ShouldBindJSON(&input)
 
-	product := model.EntityProducts{ID: input.ID, Name: input.Name, Description: input.Description}
+	product := model.Product{ID: input.ID, Name: input.Name, Description: input.Description}
 
 	result := database.DB.Create(&product)
 

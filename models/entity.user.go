@@ -1,12 +1,16 @@
 package model
 
 import (
+	"html"
+	"strings"
 	"time"
 
 	"gorm.io/gorm"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
-type EntityUsers struct {
+type User struct {
 	ID        string `gorm:"primaryKey;type:varchar(15);not null"`
 	FirstName string `gorm:"type:varchar(255);not null"`
 	LastName  string `gorm:"type:varchar(255);not null"`
@@ -15,15 +19,26 @@ type EntityUsers struct {
 	Password  string `gorm:"type:varchar(255);not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt time.Time `gorm:"default:null"`
+	DeletedAt *time.Time `gorm:"default:null"`
 }
 
-func (entity *EntityUsers) BeforeCreate(db *gorm.DB) error {
+func (entity *User) BeforeCreate(db *gorm.DB) error {
 	entity.CreatedAt = time.Now().Local()
 	return nil
 }
 
-func (entity *EntityUsers) BeforeUpdate(db *gorm.DB) error {
+func (entity *User) BeforeUpdate(db *gorm.DB) error {
 	entity.UpdatedAt = time.Now().Local()
+	return nil
+}
+
+func (entity *User) BeforeSave(db *gorm.DB) error {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(entity.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+
+	entity.Password = string(hashedPassword)
+	entity.Username = html.EscapeString(strings.TrimSpace(entity.Username))
 	return nil
 }

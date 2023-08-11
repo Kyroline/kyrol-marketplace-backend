@@ -1,0 +1,6 @@
+Logout has not yet implemented, because maybe its not required,
+JWT token has its own lifetime, if it exceeds its lifetime it
+wont be authorized, to implement logout in your front end remove
+the session key that contains the token. But, if it IS INDEED 
+required, I'll make a list so only token that is in the list is
+authorized, logout means that the token is removed fom the list.
