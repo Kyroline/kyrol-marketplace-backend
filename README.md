@@ -1,7 +1,7 @@
 
 # Kyrol Marketplace API
 
-A ready-to-use, Golang backend API version of Kyrol Marketplace.
+A (not yet)ready-to-use, Golang backend API version of Kyrol Marketplace.
 
 
 
