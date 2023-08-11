@@ -17,6 +17,7 @@ A ready-to-use, Golang backend API version of Kyrol Marketplace.
 ## Tech Stack
 
 **Server:** Golang, Gin
+**Database:** MySQL
 
 
 ## API Reference
@@ -34,7 +35,7 @@ A ready-to-use, Golang backend API version of Kyrol Marketplace.
 #### Get product
 
 ```http
-  GET /api/product/${id}
+  GET /api/v1/product/${id}
 ```
 
 | Parameter | Type     | Description                       |
