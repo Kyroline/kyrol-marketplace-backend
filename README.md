@@ -17,6 +17,7 @@ A ready-to-use, Golang backend API version of Kyrol Marketplace.
 ## Tech Stack
 
 **Server:** Golang, Gin
+
 **Database:** MySQL
 
 
