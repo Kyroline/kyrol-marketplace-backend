@@ -40,8 +40,8 @@ Response - 200
   "data": [
     {
       "id": "EN100123",
-      "name": "Cock Enlarging Potion",
-      "description": "Potion to drink when you're insecure about your johny's size",
+      "name": "Name",
+      "description": "Desc",
       "variant": [
         {
           "id": "EN100123-100",
@@ -59,9 +59,22 @@ Response - 200
     },
     {
       "id": "EN100124",
-      "name": "Cock Dwindling Substance",
-      "description": "",
-      "variant": []
+      "name": "Name",
+      "description": "Desc",
+      "variant": [
+        {
+          "id": "EN100124-100",
+          "name": "100ML",
+          "price": 250000,
+          "stock": 15
+        },
+        {
+          "id": "EN100124-250",
+          "name": "250ML",
+          "price": 500000,
+          "stock": 18
+        }
+      ]
     }
   ]
 }
