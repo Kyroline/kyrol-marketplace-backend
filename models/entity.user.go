@@ -19,7 +19,7 @@ type User struct {
 	Password  string `gorm:"type:varchar(255);not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt *time.Time `gorm:"default:null"`
+	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
 func (entity *User) BeforeCreate(db *gorm.DB) error {

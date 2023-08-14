@@ -33,6 +33,40 @@ A (not yet)ready-to-use, Golang backend API version of Kyrol Marketplace.
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Required**. Your API key |
 
+Response - 200
+
+```javascript
+{
+  "data": [
+    {
+      "id": "EN100123",
+      "name": "Cock Enlarging Potion",
+      "description": "Potion to drink when you're insecure about your johny's size",
+      "variant": [
+        {
+          "id": "EN100123-100",
+          "name": "100ML",
+          "price": 250000,
+          "stock": 15
+        },
+        {
+          "id": "EN100123-250",
+          "name": "250ML",
+          "price": 500000,
+          "stock": 18
+        }
+      ]
+    },
+    {
+      "id": "EN100124",
+      "name": "Cock Dwindling Substance",
+      "description": "",
+      "variant": []
+    }
+  ]
+}
+```
+
 #### Get product
 
 ```http

@@ -14,7 +14,7 @@ type ProductVariant struct {
 	Stock     uint    `gorm:"not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt time.Time `gorm:"default:null"`
+	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
 func (entity *ProductVariant) BeforeCreate(db *gorm.DB) error {

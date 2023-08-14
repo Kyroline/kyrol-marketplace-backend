@@ -13,7 +13,7 @@ type Product struct {
 	ProductVariant []ProductVariant `gorm:"foreignKey:ProductID;references:ID"`
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
-	DeletedAt      time.Time `gorm:"default:null"`
+	DeletedAt      gorm.DeletedAt `gorm:"index"`
 }
 
 func (entity *Product) BeforeCreate(db *gorm.DB) error {
