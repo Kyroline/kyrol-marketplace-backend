@@ -30,3 +30,20 @@ func CreateVariant(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{})
 }
+
+func BatchCreate(c *gin.Context) {
+	var input BatchInput
+	c.ShouldBindJSON(&input)
+
+	for _, variant := range input.Data {
+		new := model.ProductVariant{ProductID: variant.ProductID, ID: variant.ID, Name: variant.Name, Price: variant.Price, Stock: variant.Stock}
+		if err := database.DB.Save(&new).Error; err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": err,
+			})
+			return
+		}
+	}
+
+	c.JSON(http.StatusCreated, gin.H{})
+}

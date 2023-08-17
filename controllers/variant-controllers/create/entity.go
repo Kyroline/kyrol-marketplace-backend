@@ -7,3 +7,7 @@ type Input struct {
 	Price     float64 `json:"price"`
 	Stock     uint    `json:"stock"`
 }
+
+type BatchInput struct {
+	Data []Input `json:"data"`
+}
