@@ -10,7 +10,10 @@ type Output struct {
 }
 
 type Item struct {
-	CartID    string `json:"-"`
-	ProductID string
-	VariantID string
+	CartID      string `json:"-"`
+	ProductID   string
+	VariantID   string
+	ProductName string
+	VariantName string
+	Qty         uint
 }

@@ -7,15 +7,13 @@ import (
 )
 
 type CartItem struct {
-	CartID         string
-	ID             string
-	ProductID      string
-	Product        Product `gorm:"foreignKey:ProductID"`
-	VariantID      string
-	ProductVariant ProductVariant `gorm:"foreignKey:VariantID"`
-	Qty            uint
-	CreatedAt      time.Time
-	UpdatedAt      time.Time
+	CartID    string
+	ID        string
+	ProductID string
+	Product   Product `gorm:"foreignKey:ProductID"`
+	Qty       uint
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func (entity *CartItem) BeforeCreate(db *gorm.DB) error {

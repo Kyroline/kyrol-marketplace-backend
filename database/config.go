@@ -28,7 +28,7 @@ func CloseConn() {
 func Migrate() {
 	DB.Debug().AutoMigrate(
 		&model.Product{},
-		&model.ProductVariant{},
 		&model.User{},
+		&model.Category{},
 	)
 }

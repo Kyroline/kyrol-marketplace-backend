@@ -21,5 +21,11 @@ func GetCart(c *gin.Context) {
 		return
 	}
 
+	for i, item := range cart.Item {
+		var product = model.Product{ID: item.ProductID}
+		database.DB.Model(&model.Product{}).Find(&product)
+		cart.Item[i].ProductName = product.Name
+	}
+
 	c.JSON(http.StatusOK, cart)
 }

@@ -14,7 +14,6 @@ func CreateProduct(c *gin.Context) {
 	c.ShouldBindJSON(&input)
 
 	product := model.Product{ID: input.ID, Name: input.Name, Description: input.Description}
-
 	result := database.DB.Create(&product)
 
 	if result.Error != nil {

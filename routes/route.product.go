@@ -11,9 +11,10 @@ import (
 
 func InitProductRoute(route *gin.Engine) {
 	groupRoute := route.Group("/api/v1/product")
+	groupRoute.GET("/:id", getProduct.ShowProduct)
 	groupRoute.GET("/", getProduct.GetProduct)
 	groupRoute.POST("/", createProduct.CreateProduct)
-	groupRoute.GET("/:id", getProduct.GetProduct)
 	groupRoute.PUT("/:id", updateProduct.UpdateProduct)
+	groupRoute.PATCH("/:id", updateProduct.UpdateProduct)
 	groupRoute.DELETE("/:id", deleteProduct.DeleteProduct)
 }

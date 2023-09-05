@@ -1,16 +1,14 @@
 package getProduct
 
-type Output struct {
-	ID             string           `json:"id"`
-	Name           string           `json:"name"`
-	Description    string           `json:"description"`
-	ProductVariant []ProductVariant `gorm:"foreignKey:ProductID;references:ID" json:"variant"`
+type Product struct {
+	ID          string      `json:"id"`
+	Name        string      `json:"name"`
+	Description string      `json:"description"`
+	Categories  []*Category `gorm:"many2many:category_product"`
 }
 
-type ProductVariant struct {
-	ProductID string  `json:"-"`
-	ID        string  `json:"id"`
-	Name      string  `json:"name"`
-	Price     float64 `json:"price"`
-	Stock     uint    `json:"stock"`
+type Category struct {
+	ID       string     `json:"id"`
+	Name     string     `json:"name"`
+	Products []*Product `gorm:"many2many:category_product" json:"-"`
 }

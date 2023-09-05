@@ -29,7 +29,7 @@ func SetupRouter() *gin.Engine {
 
 	route.InitProductRoute(router)
 	route.InitAuthRoute(router)
-	route.InitVariantRoute(router)
+	route.InitCategoryRoute(router)
 
 	return router
 }

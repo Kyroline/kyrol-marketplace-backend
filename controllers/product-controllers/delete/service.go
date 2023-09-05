@@ -13,7 +13,7 @@ func DeleteProduct(c *gin.Context) {
 
 	var product model.Product
 	if err := database.DB.Model(&model.Product{}).Where("ID = ?", id).First(&product).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.JSON(http.StatusNotFound, gin.H{
 			"error": err.Error,
 		})
 		return
