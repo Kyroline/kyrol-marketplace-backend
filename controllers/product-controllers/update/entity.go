@@ -1,6 +1,9 @@
 package updateProduct
 
 type Input struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
+	Name        string
+	Description string
+	Stock       uint
+	Price       float64
+	Categories  []uint
 }

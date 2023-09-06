@@ -24,6 +24,8 @@ func UpdateProduct(c *gin.Context) {
 
 	product.Name = input.Name
 	product.Description = input.Description
+	product.Stock = input.Stock
+	product.Price = input.Price
 
 	if err := database.DB.Save(&product).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -31,6 +33,16 @@ func UpdateProduct(c *gin.Context) {
 		})
 		return
 	}
+
+	var category []model.Category
+	if err := database.DB.Model(&model.Category{}).Where("id IN ?", input.Categories).Find(&category).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	database.DB.Model(&product).Association("Categories").Replace(&category)
 
 	c.Status(http.StatusNoContent)
 }

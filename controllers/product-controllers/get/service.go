@@ -37,8 +37,6 @@ func ShowProduct(c *gin.Context) {
 		return
 	}
 
-	// c.JSON(http.StatusOK, product)
-
 	c.JSON(http.StatusOK, gin.H{
 		"data": product,
 	})
