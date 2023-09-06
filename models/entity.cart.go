@@ -7,10 +7,12 @@ import (
 )
 
 type Cart struct {
-	UserID    string
-	User      User       `gorm:"foreignKey:UserID"`
-	ID        string     `gorm:"primaryKey"`
-	Item      []CartItem `gorm:"foreignKey:CartID"`
+	UserID    string `gorm:"type:varchar(15)"`
+	ID        string `gorm:"primaryKey;type:varchar(15)"`
+	ProductID string `gorm:"type:varchar(15)"`
+	Qty       uint
+	User      User    `gorm:"foreignKey:UserID"`
+	Product   Product `gorm:"foreignKey:ProductID"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`

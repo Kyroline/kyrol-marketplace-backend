@@ -18,8 +18,10 @@ func CreateCart(c *gin.Context) {
 		return
 	}
 
-	id := "CART" + uid
-	cart := model.Cart{UserID: uid, ID: id}
+	var input InputCreateCart
+	c.ShouldBindJSON(&input)
+
+	cart := model.Cart{UserID: uid, ID: uid + input.ProductID, ProductID: input.ProductID, Qty: input.Qty}
 
 	if err := database.DB.Create(&cart); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -28,5 +30,5 @@ func CreateCart(c *gin.Context) {
 		return
 	}
 
-	c.Status(http.StatusNoContent)
+	c.JSON(http.StatusCreated, cart)
 }

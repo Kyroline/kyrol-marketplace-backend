@@ -30,6 +30,7 @@ func SetupRouter() *gin.Engine {
 	route.InitProductRoute(router)
 	route.InitAuthRoute(router)
 	route.InitCategoryRoute(router)
+	route.InitCartRoute(router)
 
 	return router
 }

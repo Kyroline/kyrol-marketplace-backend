@@ -1,19 +1,16 @@
 package getCart
 
-import "time"
-
 type Output struct {
+	UserID    string
 	ID        string
-	Item      []Item `gorm:"foreignKey:CartID"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ProductID string
+	Qty       uint
+	Product   Product `gorm:"foreignKey:ProductID"`
 }
 
-type Item struct {
-	CartID      string `json:"-"`
-	ProductID   string
-	VariantID   string
-	ProductName string
-	VariantName string
-	Qty         uint
+type Product struct {
+	ID    string
+	Name  string
+	Stock uint
+	Price float64
 }
