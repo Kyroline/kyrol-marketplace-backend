@@ -31,5 +31,7 @@ func Migrate() {
 		&model.User{},
 		&model.Category{},
 		&model.Cart{},
+		&model.Invoice{},
+		&model.InvoiceItem{},
 	)
 }
