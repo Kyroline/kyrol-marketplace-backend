@@ -28,7 +28,7 @@ func CreateProduct(c *gin.Context) {
 		return
 	}
 
-	var category []model.Category
+	var category []*model.Category
 	if err := database.DB.Model(&model.Category{}).Where("id IN ?", input.Categories).Find(&category).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": err.Error(),

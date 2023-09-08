@@ -27,17 +27,26 @@ func UpdateProduct(c *gin.Context) {
 	product.Stock = input.Stock
 	product.Price = input.Price
 
-	if err := database.DB.Save(&product).Error; err != nil {
+	// if err := database.DB.Save(&product).Error; err != nil {
+	// 	c.JSON(http.StatusInternalServerError, gin.H{
+	// 		"error": err.Error,
+	// 	})
+	// 	return
+	// }
+
+	var category []*model.Category
+	if err := database.DB.Model(&model.Category{}).Where("id IN ?", input.Categories).Find(&category).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error,
+			"message": err.Error(),
 		})
 		return
 	}
 
-	var category []model.Category
-	if err := database.DB.Model(&model.Category{}).Where("id IN ?", input.Categories).Find(&category).Error; err != nil {
+	// product.Categories = category
+
+	if err := database.DB.Save(&product).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": err.Error(),
+			"error": err.Error,
 		})
 		return
 	}

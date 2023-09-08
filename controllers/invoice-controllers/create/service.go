@@ -13,7 +13,14 @@ import (
 )
 
 func CreateInvoice(c *gin.Context) {
-	uid, _ := util.ExtractTokenID(c)
+	uid, err1 := util.ExtractTokenID(c)
+
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": err1.Error(),
+		})
+		return
+	}
 
 	var input InputCreateInvoice
 	c.ShouldBindJSON(&input)
