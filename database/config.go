@@ -33,5 +33,7 @@ func Migrate() {
 		&model.Cart{},
 		&model.Invoice{},
 		&model.InvoiceItem{},
+		&model.Permission{},
+		&model.Role{},
 	)
 }

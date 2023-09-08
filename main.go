@@ -3,6 +3,8 @@ package main
 import (
 	database "kyrol-marketplace-backend/database"
 
+	"fmt"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
@@ -12,6 +14,10 @@ import (
 func main() {
 	database.Conn()
 	database.Migrate()
+	if err := database.Seeder(); err != nil {
+		fmt.Printf("Error : ", err.Error())
+		return
+	}
 
 	router := SetupRouter()
 	router.Run()
