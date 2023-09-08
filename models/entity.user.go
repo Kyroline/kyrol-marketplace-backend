@@ -17,6 +17,7 @@ type User struct {
 	Username  string `gorm:"type:varchar(255);unique;not null`
 	Email     string `gorm:"type:varchar(255);unique;not null"`
 	Password  string `gorm:"type:varchar(255);not null"`
+	Roles     []Role `gorm:"many2many:user_role"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
