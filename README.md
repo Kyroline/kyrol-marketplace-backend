@@ -10,9 +10,10 @@ A (not yet)ready-to-use, Golang backend API version of Kyrol Marketplace.
 
 - JWT Authentication
 - Authorization via role and permission
-- Request valiation (not yet)
+- Customized Role (not yet)
+- Request validation (not yet)
 - Swagger Documentation (not yet)
-- Cross platform
+- Cross platform (maybe?)
 
 
 ## Tech Stack
