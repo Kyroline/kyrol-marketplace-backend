@@ -77,11 +77,11 @@ func Seeder() error {
 	permissions := []*model.Permission{
 		&model.Permission{
 			ID:   1,
-			Name: "product_read",
+			Name: "product_create",
 		},
 		&model.Permission{
 			ID:   2,
-			Name: "product_create",
+			Name: "product_read",
 		},
 		&model.Permission{
 			ID:   3,
@@ -105,7 +105,39 @@ func Seeder() error {
 		},
 		&model.Permission{
 			ID:   8,
-			Name: "cart_update",
+			Name: "cart_delete",
+		},
+		&model.Permission{
+			ID:   9,
+			Name: "category_create",
+		},
+		&model.Permission{
+			ID:   10,
+			Name: "category_read",
+		},
+		&model.Permission{
+			ID:   11,
+			Name: "category_update",
+		},
+		&model.Permission{
+			ID:   12,
+			Name: "category_delete",
+		},
+		&model.Permission{
+			ID:   13,
+			Name: "invoice_create",
+		},
+		&model.Permission{
+			ID:   14,
+			Name: "invoice_read",
+		},
+		&model.Permission{
+			ID:   15,
+			Name: "invoice_update",
+		},
+		&model.Permission{
+			ID:   16,
+			Name: "invoice_delete",
 		},
 	}
 
@@ -159,7 +191,13 @@ func Seeder() error {
 	role1 := model.Role{}
 	permission := []model.Permission{}
 	DB.Model(&model.Role{}).Where("id = ?", 1).Take(&role1)
-	DB.Model(&[]model.Permission{}).Where("id IN ?", [8]uint{1, 2, 3, 4, 5, 6, 7, 8}).Find(&permission)
+	DB.Model(&[]model.Permission{}).Where("id IN ?", [16]uint{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}).Find(&permission)
+	DB.Model(&role1).Association("Permissions").Replace(&permission)
+
+	role1 = model.Role{}
+	permission = []model.Permission{}
+	DB.Model(&model.Role{}).Where("id = ?", 2).Take(&role1)
+	DB.Model(&[]model.Permission{}).Where("id IN ?", [5]uint{2, 6, 10, 13, 14}).Find(&permission)
 	DB.Model(&role1).Association("Permissions").Replace(&permission)
 
 	return nil
