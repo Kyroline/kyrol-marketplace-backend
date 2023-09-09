@@ -47,7 +47,7 @@ func BlockToken(tokenString string) error {
 	return nil
 }
 
-func ExtractToken(c *gin.Context) string {
+func ExtractTokenHeader(c *gin.Context) string {
 	token := c.Request.Header.Get("Authorization")
 	if len(strings.Split(token, " ")) == 2 {
 		return strings.Split(token, " ")[1]
@@ -56,14 +56,9 @@ func ExtractToken(c *gin.Context) string {
 }
 
 func ExtractTokenID(c *gin.Context) (string, error) {
-	tokenString := ExtractToken(c)
+	tokenString := ExtractTokenHeader(c)
 
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-		}
-		return []byte(GetEnv("JWT_KEY")), nil
-	})
+	token, err := ParseToken(tokenString)
 	if err != nil {
 		return "", err
 	}
@@ -72,4 +67,38 @@ func ExtractTokenID(c *gin.Context) (string, error) {
 		return claims["uid"].(string), nil
 	}
 	return "", nil
+}
+
+func ParseToken(tokenString string) (*jwt.Token, error) {
+	return jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte(GetEnv("JWT_KEY")), nil
+	})
+}
+
+func VerifyToken(tokenString string) error {
+	token, err := ParseToken(tokenString)
+	if err != nil {
+		return err
+	}
+	_, ok := token.Claims.(jwt.MapClaims)
+	if ok && token.Valid {
+		return nil
+	}
+	return fmt.Errorf("Unauthenticated")
+}
+
+func VerifyTokenHeader(c *gin.Context) error {
+	tokenString := ExtractTokenHeader(c)
+	token, err := ParseToken(tokenString)
+	if err != nil {
+		return err
+	}
+	_, ok := token.Claims.(jwt.MapClaims)
+	if ok && token.Valid {
+		return nil
+	}
+	return fmt.Errorf("Unauthenticated")
 }
