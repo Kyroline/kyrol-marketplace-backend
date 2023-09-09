@@ -3,7 +3,6 @@ package getProduct
 import (
 	database "kyrol-marketplace-backend/database"
 	model "kyrol-marketplace-backend/models"
-
 	"net/http"
 
 	"github.com/gin-gonic/gin"
