@@ -22,6 +22,23 @@ A (not yet)ready-to-use, Golang backend API version of Kyrol Marketplace.
 **Database:** MySQL
 
 
+## Sample User
+
+Email: valerica@liende.com
+
+Role: Admin (1)
+
+Password: password
+
+
+
+Email: valencia@liende.com
+
+Role: Regular User (2)
+
+Password: password
+
+
 ## Authors
 
 - [@kyroline (Rizky Wahyu Dewantoro)](https://github.com/Kyroline)
